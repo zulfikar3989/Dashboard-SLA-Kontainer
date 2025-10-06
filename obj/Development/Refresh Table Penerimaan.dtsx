@@ -1,0 +1,1256 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/24/2023 4:06:12 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NBMIS-1-09"
+  DTS:CreatorName="DATASCRIP\zulfikar"
+  DTS:DTSID="{A85BDA7A-B890-431E-867D-783C41816788}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Refresh Table Penerimaan"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{AF301C4C-2DB8-4039-959D-A9F09A2FD9C9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BISTAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C1636880-7C80-4D18-ADFD-5CE2102A8B27}"
+      DTS:ObjectName="BISTAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BISTAGING;Initial Catalog=BISTAGING_DEVELOPMENT;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{C1636880-7C80-4D18-ADFD-5CE2102A8B27}BISTAGING.BISTAGING;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DTSNAV]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B061C165-2E69-4A4A-99F6-9AB0C85AA6CA}"
+      DTS:ObjectName="DTSNAV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=TNAV2015;Initial Catalog=DTSNAV2015_TRACEDEV;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{B061C165-2E69-4A4A-99F6-9AB0C85AA6CA}DTSNAVDB01.DTSNAV2015;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3FB8EF11-5823-43EE-BF9E-E6A72A33D76D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="kontainer-dts_penerimaan_barang_hdr"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[kontainer].[dts_penerimaan_barang_hdr]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BISTAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[BISTAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[No_]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="No_"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Document Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Document Date"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Document Date]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Document Date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Source Document]"
+                      cachedDataType="i4"
+                      cachedName="Source Document"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Source Document]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Source Document]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[No_ Surat Jalan]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="No_ Surat Jalan"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_ Surat Jalan]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Surat Jalan]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Arrival Date Time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Arrival Date Time"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Arrival Date Time]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Arrival Date Time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Finish Date Time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Finish Date Time"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Finish Date Time]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Finish Date Time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Doc_ Status]"
+                      cachedDataType="i4"
+                      cachedName="Doc_ Status"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Doc_ Status]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Doc_ Status]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Applied Status]"
+                      cachedDataType="i4"
+                      cachedName="Applied Status"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Applied Status]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Applied Status]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Assigned User ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Assigned User ID"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Assigned User ID]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Assigned User ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Assignment Date Time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Assignment Date Time"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Assignment Date Time]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Assignment Date Time]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[No_ Series]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="No_ Series"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_ Series]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Series]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Whse_ Recpt_ No_]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Whse_ Recpt_ No_"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Whse_ Recpt_ No_]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Whse_ Recpt_ No_]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Location Code]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Location Code"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Location Code]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Location Code]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Print User ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Print User ID"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Print User ID]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Print User ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Administrative]"
+                      cachedDataType="ui1"
+                      cachedName="Administrative"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Administrative]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Administrative]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Real Transaction]"
+                      cachedDataType="ui1"
+                      cachedName="Real Transaction"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Real Transaction]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Real Transaction]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Bex]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Bex"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Bex]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Bex]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Admin Note]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Admin Note"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Admin Note]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Admin Note]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Reason Reopen]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="Reason Reopen"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Reason Reopen]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Reason Reopen]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Source Doc_ No_]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Source Doc_ No_"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Source Doc_ No_]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Source Doc_ No_]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Cubage]"
+                      cachedDataType="numeric"
+                      cachedName="Cubage"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Cubage]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Cubage]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[Weight]"
+                      cachedDataType="numeric"
+                      cachedName="Weight"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Weight]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Weight]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[JmlColi]"
+                      cachedDataType="numeric"
+                      cachedName="JmlColi"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[JmlColi]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[JmlColi]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[JmlLine]"
+                      cachedDataType="i4"
+                      cachedName="JmlLine"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[JmlLine]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[JmlLine]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[PO Lokal]"
+                      cachedDataType="ui1"
+                      cachedName="PO Lokal"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[PO Lokal]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[PO Lokal]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[PO Impor]"
+                      cachedDataType="ui1"
+                      cachedName="PO Impor"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[PO Impor]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[PO Impor]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].Columns[No_ Booking]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="No_ Booking"
+                      externalMetadataColumnId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_ Booking]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Booking]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[timestamp]"
+                      dataType="bytes"
+                      length="8"
+                      name="timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Document Date]"
+                      dataType="dbTimeStamp"
+                      name="Document Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Source Document]"
+                      dataType="i4"
+                      name="Source Document" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_ Surat Jalan]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_ Surat Jalan" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Arrival Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Arrival Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Finish Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Doc_ Status]"
+                      dataType="i4"
+                      name="Doc_ Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Applied Status]"
+                      dataType="i4"
+                      name="Applied Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Assigned User ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Assigned User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Assignment Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_ Series]"
+                      dataType="wstr"
+                      length="10"
+                      name="No_ Series" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Whse_ Recpt_ No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Whse_ Recpt_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Location Code" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Print User ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="Print User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Administrative]"
+                      dataType="ui1"
+                      name="Administrative" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Real Transaction]"
+                      dataType="ui1"
+                      name="Real Transaction" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Bex]"
+                      dataType="wstr"
+                      length="10"
+                      name="Bex" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Admin Note]"
+                      dataType="wstr"
+                      length="100"
+                      name="Admin Note" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Reason Reopen]"
+                      dataType="wstr"
+                      length="150"
+                      name="Reason Reopen" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Source Doc_ No_]"
+                      dataType="wstr"
+                      length="30"
+                      name="Source Doc_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Cubage]"
+                      dataType="numeric"
+                      name="Cubage"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[Weight]"
+                      dataType="numeric"
+                      name="Weight"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[JmlColi]"
+                      dataType="numeric"
+                      name="JmlColi"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[JmlLine]"
+                      dataType="i4"
+                      name="JmlLine" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[PO Lokal]"
+                      dataType="ui1"
+                      name="PO Lokal" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[PO Impor]"
+                      dataType="ui1"
+                      name="PO Impor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input].ExternalColumns[No_ Booking]"
+                      dataType="wstr"
+                      length="30"
+                      name="No_ Booking" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Penerimaan Barang Header"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Penerimaan Barang Header"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PT DATASCRIP$Penerimaan Barang Header]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Penerimaan Barang Header.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DTSNAV]"
+                  connectionManagerRefId="Package.ConnectionManagers[DTSNAV]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_]"
+                      name="No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Document Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Document Date]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Document Date]"
+                      name="Document Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Source Document]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Source Document]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Source Document]"
+                      name="Source Document"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Surat Jalan]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_ Surat Jalan]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Surat Jalan]"
+                      name="No_ Surat Jalan"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Arrival Date Time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Arrival Date Time]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Arrival Date Time]"
+                      name="Arrival Date Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Finish Date Time]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Finish Date Time]"
+                      name="Finish Date Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Doc_ Status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Doc_ Status]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Doc_ Status]"
+                      name="Doc_ Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Applied Status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Applied Status]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Applied Status]"
+                      name="Applied Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Assigned User ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Assigned User ID]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Assigned User ID]"
+                      name="Assigned User ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Assignment Date Time]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Assignment Date Time]"
+                      name="Assignment Date Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Series]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_ Series]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Series]"
+                      name="No_ Series"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Whse_ Recpt_ No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Whse_ Recpt_ No_]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Whse_ Recpt_ No_]"
+                      name="Whse_ Recpt_ No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Location Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Location Code]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Location Code]"
+                      name="Location Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Print User ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Print User ID]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Print User ID]"
+                      name="Print User ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Administrative]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Administrative]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Administrative]"
+                      name="Administrative"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Real Transaction]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Real Transaction]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Real Transaction]"
+                      name="Real Transaction"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Bex]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Bex]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Bex]"
+                      name="Bex"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Admin Note]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Admin Note]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Admin Note]"
+                      name="Admin Note"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Reason Reopen]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Reason Reopen]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Reason Reopen]"
+                      name="Reason Reopen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Source Doc_ No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Source Doc_ No_]"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Source Doc_ No_]"
+                      name="Source Doc_ No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Cubage]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Cubage]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Cubage]"
+                      name="Cubage"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Weight]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[Weight]"
+                      name="Weight"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[JmlColi]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[JmlColi]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[JmlColi]"
+                      name="JmlColi"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[JmlLine]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[JmlLine]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[JmlLine]"
+                      name="JmlLine"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[PO Lokal]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[PO Lokal]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[PO Lokal]"
+                      name="PO Lokal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[PO Impor]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[PO Impor]"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[PO Impor]"
+                      name="PO Impor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Booking]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_ Booking]"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].Columns[No_ Booking]"
+                      name="No_ Booking"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[timestamp]"
+                      dataType="bytes"
+                      length="8"
+                      name="timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Document Date]"
+                      dataType="dbTimeStamp"
+                      name="Document Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Source Document]"
+                      dataType="i4"
+                      name="Source Document" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_ Surat Jalan]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_ Surat Jalan" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Arrival Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Arrival Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Finish Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Doc_ Status]"
+                      dataType="i4"
+                      name="Doc_ Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Applied Status]"
+                      dataType="i4"
+                      name="Applied Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Assigned User ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Assigned User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Assignment Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_ Series]"
+                      dataType="wstr"
+                      length="10"
+                      name="No_ Series" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Whse_ Recpt_ No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Whse_ Recpt_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Location Code" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Print User ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="Print User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Administrative]"
+                      dataType="ui1"
+                      name="Administrative" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Real Transaction]"
+                      dataType="ui1"
+                      name="Real Transaction" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Bex]"
+                      dataType="wstr"
+                      length="10"
+                      name="Bex" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Admin Note]"
+                      dataType="wstr"
+                      length="100"
+                      name="Admin Note" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Reason Reopen]"
+                      dataType="wstr"
+                      length="150"
+                      name="Reason Reopen" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Source Doc_ No_]"
+                      dataType="wstr"
+                      length="30"
+                      name="Source Doc_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Cubage]"
+                      dataType="numeric"
+                      name="Cubage"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                      dataType="numeric"
+                      name="Weight"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[JmlColi]"
+                      dataType="numeric"
+                      name="JmlColi"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[JmlLine]"
+                      dataType="i4"
+                      name="JmlLine" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[PO Lokal]"
+                      dataType="ui1"
+                      name="PO Lokal" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[PO Impor]"
+                      dataType="ui1"
+                      name="PO Impor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output].ExternalColumns[No_ Booking]"
+                      dataType="wstr"
+                      length="30"
+                      name="No_ Booking" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_]"
+                      name="No_" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Document Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Document Date]"
+                      name="Document Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Source Document]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Source Document]"
+                      name="Source Document" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_ Surat Jalan]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_ Surat Jalan]"
+                      name="No_ Surat Jalan" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Arrival Date Time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Arrival Date Time]"
+                      name="Arrival Date Time" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Finish Date Time]"
+                      name="Finish Date Time" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Doc_ Status]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Doc_ Status]"
+                      name="Doc_ Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Applied Status]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Applied Status]"
+                      name="Applied Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Assigned User ID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Assigned User ID]"
+                      name="Assigned User ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Assignment Date Time]"
+                      name="Assignment Date Time" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_ Series]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_ Series]"
+                      name="No_ Series" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Whse_ Recpt_ No_]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Whse_ Recpt_ No_]"
+                      name="Whse_ Recpt_ No_" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Location Code]"
+                      name="Location Code" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Print User ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Print User ID]"
+                      name="Print User ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Administrative]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Administrative]"
+                      name="Administrative" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Real Transaction]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Real Transaction]"
+                      name="Real Transaction" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Bex]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Bex]"
+                      name="Bex" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Admin Note]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Admin Note]"
+                      name="Admin Note" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Reason Reopen]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Reason Reopen]"
+                      name="Reason Reopen" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Source Doc_ No_]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Source Doc_ No_]"
+                      name="Source Doc_ No_" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Cubage]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Cubage]"
+                      name="Cubage"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                      name="Weight"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[JmlColi]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[JmlColi]"
+                      name="JmlColi"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[JmlLine]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[JmlLine]"
+                      name="JmlLine" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[PO Lokal]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[PO Lokal]"
+                      name="PO Lokal" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[PO Impor]"
+                      dataType="ui1"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[PO Impor]"
+                      name="PO Impor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_ Booking]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[No_ Booking]"
+                      name="No_ Booking" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Penerimaan Barang Header.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table kontainer-penerimaan_barang_hdr"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CC604DCF-0D10-4620-800C-ECCAE6DF2D2D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table kontainer-penerimaan_barang_hdr"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1636880-7C80-4D18-ADFD-5CE2102A8B27}"
+          SQLTask:SqlStatementSource="truncate table kontainer.dts_penerimaan_barang_hdr" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{17400111-FDCD-4A71-92A2-C2ADA0947E98}"
+      DTS:From="Package\Truncate Table kontainer-penerimaan_barang_hdr"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="138.5,170.5" />
+        <NodeLayout
+          Size="233,49"
+          Id="Package\Truncate Table kontainer-penerimaan_barang_hdr"
+          TopLeft="100,48" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="215.25,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73.5"
+              Start="0,0"
+              End="0,66">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Data Flow Task\Penerimaan Barang Header"
+          TopLeft="45,68" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr"
+          TopLeft="20.5,160.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="150.5,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.5"
+              Start="0,0"
+              End="0,43">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\kontainer-dts_penerimaan_barang_hdr">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Penerimaan Barang Header">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

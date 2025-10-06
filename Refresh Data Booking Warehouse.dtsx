@@ -1,0 +1,1825 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/16/2023 2:26:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NBMIS-1-09"
+  DTS:CreatorName="DATASCRIP\zulfikar"
+  DTS:DTSID="{8695C001-9B41-4AB8-9819-30F3E791C295}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Refresh Data Booking Warehouse"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{41D26B45-40EE-4151-8159-14CE7FA2EF3A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BISTAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4BCFD9F1-1331-4B18-8E67-E076D2D46E10}"
+      DTS:ObjectName="BISTAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BISTAGING;Initial Catalog=BISTAGING_DEVELOPMENT;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Refresh Data Kontainer-{4BCFD9F1-1331-4B18-8E67-E076D2D46E10}BISTAGING.BISTAGING;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Warehouse Booking System]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1F63C685-834B-4F3D-98AB-A0D618141CE3}"
+      DTS:ObjectName="Warehouse Booking System">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DEVELOPSRVR;Initial Catalog=warehouse_booking_system;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Refresh Data Kontainer-{1F63C685-834B-4F3D-98AB-A0D618141CE3}DEVELOPSRVR.warehouse_booking_system;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E80B2256-5850-4AF7-8C5B-CA96A090FAED}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Copy Data\dts_penerimaan_barang_hdr"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="dts_penerimaan_barang_hdr"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[kontainer].[dts_penerimaan_barang_hdr]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Data\dts_penerimaan_barang_hdr.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BISTAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[BISTAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[No_]"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[No_]"
+                      name="No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Finish Date Time]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Finish Date Time]"
+                      name="Finish Date Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Assignment Date Time]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Assignment Date Time]"
+                      name="Assignment Date Time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Location Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Location Code]"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Location Code]"
+                      name="Location Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Bex]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Bex]"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Bex]"
+                      name="Bex"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Source Doc_ No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Source Doc_ No_]"
+                      length="30"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Source Doc_ No_]"
+                      name="Source Doc_ No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[PO Lokal]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[PO Lokal]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[PO Lokal]"
+                      name="PO Lokal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[PO Impor]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[PO Impor]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[PO Impor]"
+                      name="PO Impor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[No_ Booking]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[No_ Booking]"
+                      length="30"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[No_ Booking]"
+                      name="No_ Booking"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Assigned User ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Assigned User ID]"
+                      length="50"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Assigned User ID]"
+                      name="Assigned User ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Source Document]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Source Document]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Source Document]"
+                      name="Source Document"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[timestamp]"
+                      dataType="bytes"
+                      length="8"
+                      name="timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Document Date]"
+                      dataType="dbTimeStamp"
+                      name="Document Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Source Document]"
+                      dataType="i4"
+                      name="Source Document" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[No_ Surat Jalan]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_ Surat Jalan" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Arrival Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Arrival Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Finish Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Doc_ Status]"
+                      dataType="i4"
+                      name="Doc_ Status" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Applied Status]"
+                      dataType="i4"
+                      name="Applied Status" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Assigned User ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Assigned User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      name="Assignment Date Time" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[No_ Series]"
+                      dataType="wstr"
+                      length="10"
+                      name="No_ Series" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Whse_ Recpt_ No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Whse_ Recpt_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Location Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Print User ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="Print User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Administrative]"
+                      dataType="ui1"
+                      name="Administrative" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Real Transaction]"
+                      dataType="ui1"
+                      name="Real Transaction" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Bex]"
+                      dataType="wstr"
+                      length="10"
+                      name="Bex" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Admin Note]"
+                      dataType="wstr"
+                      length="100"
+                      name="Admin Note" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Reason Reopen]"
+                      dataType="wstr"
+                      length="150"
+                      name="Reason Reopen" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Source Doc_ No_]"
+                      dataType="wstr"
+                      length="30"
+                      name="Source Doc_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Cubage]"
+                      dataType="numeric"
+                      name="Cubage"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                      dataType="numeric"
+                      name="Weight"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[JmlColi]"
+                      dataType="numeric"
+                      name="JmlColi"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[JmlLine]"
+                      dataType="i4"
+                      name="JmlLine" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[PO Lokal]"
+                      dataType="ui1"
+                      name="PO Lokal" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[PO Impor]"
+                      dataType="ui1"
+                      name="PO Impor" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].ExternalColumns[No_ Booking]"
+                      dataType="wstr"
+                      length="30"
+                      name="No_ Booking" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[No_]"
+                      name="No_" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Finish Date Time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Finish Date Time]"
+                      name="Finish Date Time" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Assignment Date Time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Assignment Date Time]"
+                      name="Assignment Date Time" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Location Code]"
+                      name="Location Code" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Bex]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Bex]"
+                      name="Bex" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Source Doc_ No_]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Source Doc_ No_]"
+                      name="Source Doc_ No_" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[PO Lokal]"
+                      dataType="ui1"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[PO Lokal]"
+                      name="PO Lokal" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[PO Impor]"
+                      dataType="ui1"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[PO Impor]"
+                      name="PO Impor" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[No_ Booking]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[No_ Booking]"
+                      name="No_ Booking" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Assigned User ID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Assigned User ID]"
+                      name="Assigned User ID" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Source Document]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Error Output].Columns[Source Document]"
+                      name="Source Document" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Data\dts_purchasereceiptheader"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="dts_purchasereceiptheader"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dts_purchasereceiptheader]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Data\dts_purchasereceiptheader.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BISTAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[BISTAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[No_]"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[No_]"
+                      name="No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Posting Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Posting Date]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Posting Date]"
+                      name="Posting Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Location Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Location Code]"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Location Code]"
+                      name="Location Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[User ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[User ID]"
+                      length="50"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[User ID]"
+                      name="User ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Source Code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Source Code]"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Source Code]"
+                      name="Source Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Responsibility Center]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Responsibility Center]"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Responsibility Center]"
+                      name="Responsibility Center"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Order No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Order No_]"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Order No_]"
+                      name="Order No_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Penerimaan Barang No_]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Penerimaan Barang No_]"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Penerimaan Barang No_]"
+                      name="Penerimaan Barang No_"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Vendor No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Buy-from Vendor No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Vendor No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Pay-to Vendor No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Pay-to Name" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Name 2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Pay-to Name 2" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Address]"
+                      dataType="wstr"
+                      length="50"
+                      name="Pay-to Address" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Address 2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Pay-to Address 2" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to City]"
+                      dataType="wstr"
+                      length="30"
+                      name="Pay-to City" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Contact]"
+                      dataType="wstr"
+                      length="50"
+                      name="Pay-to Contact" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Your Reference]"
+                      dataType="wstr"
+                      length="35"
+                      name="Your Reference" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Ship-to Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ship-to Name" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Name 2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ship-to Name 2" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Address]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ship-to Address" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Address 2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ship-to Address 2" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to City]"
+                      dataType="wstr"
+                      length="30"
+                      name="Ship-to City" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Contact]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ship-to Contact" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Order Date]"
+                      dataType="dbTimeStamp"
+                      name="Order Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Posting Date]"
+                      dataType="dbTimeStamp"
+                      name="Posting Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Expected Receipt Date]"
+                      dataType="dbTimeStamp"
+                      name="Expected Receipt Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Posting Description]"
+                      dataType="wstr"
+                      length="50"
+                      name="Posting Description" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Payment Terms Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Payment Terms Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Due Date]"
+                      dataType="dbTimeStamp"
+                      name="Due Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Payment Discount _]"
+                      dataType="numeric"
+                      name="Payment Discount _"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pmt_ Discount Date]"
+                      dataType="dbTimeStamp"
+                      name="Pmt_ Discount Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Shipment Method Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Shipment Method Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Location Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Shortcut Dimension 1 Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Shortcut Dimension 1 Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Shortcut Dimension 2 Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Shortcut Dimension 2 Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Vendor Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      name="Vendor Posting Group" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Currency Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Currency Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Currency Factor]"
+                      dataType="numeric"
+                      name="Currency Factor"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Invoice Disc_ Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Invoice Disc_ Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Language Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Language Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Purchaser Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Purchaser Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Order No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Order No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[No_ Printed]"
+                      dataType="i4"
+                      name="No_ Printed" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[On Hold]"
+                      dataType="wstr"
+                      length="3"
+                      name="On Hold" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Applies-to Doc_ Type]"
+                      dataType="i4"
+                      name="Applies-to Doc_ Type" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Applies-to Doc_ No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Applies-to Doc_ No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Bal_ Account No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Bal_ Account No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Vendor Order No_]"
+                      dataType="wstr"
+                      length="35"
+                      name="Vendor Order No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Vendor Shipment No_]"
+                      dataType="wstr"
+                      length="35"
+                      name="Vendor Shipment No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[VAT Registration No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="VAT Registration No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Sell-to Customer No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Sell-to Customer No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Reason Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Reason Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Gen_ Bus_ Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      name="Gen_ Bus_ Posting Group" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Transaction Type]"
+                      dataType="wstr"
+                      length="10"
+                      name="Transaction Type" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Transport Method]"
+                      dataType="wstr"
+                      length="10"
+                      name="Transport Method" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[VAT Country_Region Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="VAT Country_Region Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Vendor Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Buy-from Vendor Name" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Vendor Name 2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Buy-from Vendor Name 2" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Address]"
+                      dataType="wstr"
+                      length="50"
+                      name="Buy-from Address" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Address 2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Buy-from Address 2" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from City]"
+                      dataType="wstr"
+                      length="30"
+                      name="Buy-from City" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Contact]"
+                      dataType="wstr"
+                      length="50"
+                      name="Buy-from Contact" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Post Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Pay-to Post Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to County]"
+                      dataType="wstr"
+                      length="30"
+                      name="Pay-to County" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Country_Region Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Pay-to Country_Region Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Post Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Buy-from Post Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from County]"
+                      dataType="wstr"
+                      length="30"
+                      name="Buy-from County" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Country_Region Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Buy-from Country_Region Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Post Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Ship-to Post Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to County]"
+                      dataType="wstr"
+                      length="30"
+                      name="Ship-to County" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Ship-to Country_Region Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Ship-to Country_Region Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Bal_ Account Type]"
+                      dataType="i4"
+                      name="Bal_ Account Type" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Order Address Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Order Address Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Entry Point]"
+                      dataType="wstr"
+                      length="10"
+                      name="Entry Point" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Correction]"
+                      dataType="ui1"
+                      name="Correction" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Document Date]"
+                      dataType="dbTimeStamp"
+                      name="Document Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Area]"
+                      dataType="wstr"
+                      length="10"
+                      name="Area" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Transaction Specification]"
+                      dataType="wstr"
+                      length="10"
+                      name="Transaction Specification" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Payment Method Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Payment Method Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[No_ Series]"
+                      dataType="wstr"
+                      length="10"
+                      name="No_ Series" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Order No_ Series]"
+                      dataType="wstr"
+                      length="10"
+                      name="Order No_ Series" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[User ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="User ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Source Code]"
+                      dataType="wstr"
+                      length="10"
+                      name="Source Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Tax Area Code]"
+                      dataType="wstr"
+                      length="20"
+                      name="Tax Area Code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Tax Liable]"
+                      dataType="ui1"
+                      name="Tax Liable" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[VAT Bus_ Posting Group]"
+                      dataType="wstr"
+                      length="10"
+                      name="VAT Bus_ Posting Group" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[VAT Base Discount _]"
+                      dataType="numeric"
+                      name="VAT Base Discount _"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Quote No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Quote No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Dimension Set ID]"
+                      dataType="i4"
+                      name="Dimension Set ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Campaign No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Campaign No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Buy-from Contact No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Buy-from Contact No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Pay-to Contact no_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Pay-to Contact no_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Responsibility Center]"
+                      dataType="wstr"
+                      length="10"
+                      name="Responsibility Center" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Requested Receipt Date]"
+                      dataType="dbTimeStamp"
+                      name="Requested Receipt Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Promised Receipt Date]"
+                      dataType="dbTimeStamp"
+                      name="Promised Receipt Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Lead Time Calculation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="Lead Time Calculation" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Inbound Whse_ Handling Time]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="Inbound Whse_ Handling Time" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Vendor Tax Invoice No_]"
+                      dataType="wstr"
+                      length="100"
+                      name="Vendor Tax Invoice No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Vendor Invoice No_]"
+                      dataType="wstr"
+                      length="100"
+                      name="Vendor Invoice No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Marking No_]"
+                      dataType="wstr"
+                      length="50"
+                      name="Marking No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Warehouse Receipt No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Warehouse Receipt No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Incoterm]"
+                      dataType="wstr"
+                      length="20"
+                      name="Incoterm" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[User FRONT ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="User FRONT ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Approval Now]"
+                      dataType="wstr"
+                      length="50"
+                      name="Approval Now" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Approval Requester]"
+                      dataType="wstr"
+                      length="50"
+                      name="Approval Requester" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Complete Approval Date]"
+                      dataType="dbTimeStamp"
+                      name="Complete Approval Date" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Approver ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Approver ID" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Approval Sequence]"
+                      dataType="i4"
+                      name="Approval Sequence" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Completed Approval]"
+                      dataType="ui1"
+                      name="Completed Approval" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Penerimaan Barang No_]"
+                      dataType="wstr"
+                      length="20"
+                      name="Penerimaan Barang No_" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[No_ Released]"
+                      dataType="i4"
+                      name="No_ Released" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Email Pengirim Approval]"
+                      dataType="wstr"
+                      length="250"
+                      name="Email Pengirim Approval" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Subtitute Approval Comment]"
+                      dataType="wstr"
+                      length="100"
+                      name="Subtitute Approval Comment" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].ExternalColumns[Last Released Date]"
+                      dataType="dbTimeStamp"
+                      name="Last Released Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[No_]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[No_]"
+                      name="No_" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Posting Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Posting Date]"
+                      name="Posting Date" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Location Code]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Location Code]"
+                      name="Location Code" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[User ID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[User ID]"
+                      name="User ID" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Source Code]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Source Code]"
+                      name="Source Code" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Responsibility Center]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Responsibility Center]"
+                      name="Responsibility Center" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Order No_]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Order No_]"
+                      name="Order No_" />
+                    <outputColumn
+                      refId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Penerimaan Barang No_]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Error Output].Columns[Penerimaan Barang No_]"
+                      name="Penerimaan Barang No_" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Data\tbl_penerimaan_barang_header"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="tbl_penerimaan_barang_header"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[tbl_penerimaan_barang_header]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Data\tbl_penerimaan_barang_header.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Warehouse Booking System]"
+                  connectionManagerRefId="Package.ConnectionManagers[Warehouse Booking System]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Bex]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Bex"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[bex]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Bex]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[PO Lokal]"
+                      cachedDataType="ui1"
+                      cachedName="PO Lokal"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[PO Lokal]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[PO Lokal]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[PO Impor]"
+                      cachedDataType="ui1"
+                      cachedName="PO Impor"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[PO Impor]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[PO Impor]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Source Doc_ No_]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Source Doc_ No_"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[source_doc_no]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Source Doc_ No_]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Assigned User ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Assigned User ID"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[user_assigned]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Assigned User ID]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Finish Date Time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Finish Date Time"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[tgl_register]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Finish Date Time]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Assignment Date Time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Assignment Date Time"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[assignment_date_time]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Assignment Date Time]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[No_]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="No_"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[no_pbd]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[No_]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Location Code]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Location Code"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[location_code]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Location Code]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[No_ Booking]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="No_ Booking"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[no_booking]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[No_ Booking]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].Columns[Source Document]"
+                      cachedDataType="i4"
+                      cachedName="Source Document"
+                      externalMetadataColumnId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[source_document]"
+                      lineageId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output].Columns[Source Document]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[no_booking]"
+                      dataType="wstr"
+                      length="50"
+                      name="no_booking" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[location_code]"
+                      dataType="wstr"
+                      length="10"
+                      name="location_code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[no_pbd]"
+                      dataType="wstr"
+                      length="20"
+                      name="no_pbd" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[assignment_date_time]"
+                      dataType="dbTimeStamp"
+                      name="assignment_date_time" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[tgl_register]"
+                      dataType="dbTimeStamp"
+                      name="tgl_register" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[user_assigned]"
+                      dataType="wstr"
+                      length="50"
+                      name="user_assigned" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[bex]"
+                      dataType="wstr"
+                      length="10"
+                      name="bex" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[source_doc_no]"
+                      dataType="wstr"
+                      length="30"
+                      name="source_doc_no" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[PO Impor]"
+                      dataType="ui1"
+                      name="PO Impor" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[PO Lokal]"
+                      dataType="ui1"
+                      name="PO Lokal" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input].ExternalColumns[source_document]"
+                      dataType="i4"
+                      name="source_document" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Data\tbl_penerimaan_barang_header.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\tbl_penerimaan_barang_header.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Data\tbl_penerimaan_barang_header.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\tbl_penerimaan_barang_header.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Copy Data\tbl_purch_receive_hdr"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="tbl_purch_receive_hdr"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[tbl_purch_receive_header]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Copy Data\tbl_purch_receive_hdr.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Warehouse Booking System]"
+                  connectionManagerRefId="Package.ConnectionManagers[Warehouse Booking System]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[No_]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="No_"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[no_gr]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[No_]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[Posting Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Posting Date"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[tgl_posting]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Posting Date]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[Location Code]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Location Code"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[location_code]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Location Code]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[Order No_]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Order No_"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[no_order]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Order No_]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[User ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="User ID"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[user_id]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[User ID]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[Source Code]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Source Code"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[source_code]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Source Code]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[Responsibility Center]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Responsibility Center"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[responsibility_center]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Responsibility Center]" />
+                    <inputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].Columns[Penerimaan Barang No_]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Penerimaan Barang No_"
+                      externalMetadataColumnId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[no_pbd]"
+                      lineageId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output].Columns[Penerimaan Barang No_]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[no_gr]"
+                      dataType="wstr"
+                      length="20"
+                      name="no_gr" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[tgl_posting]"
+                      dataType="dbTimeStamp"
+                      name="tgl_posting" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[location_code]"
+                      dataType="wstr"
+                      length="10"
+                      name="location_code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[no_order]"
+                      dataType="wstr"
+                      length="20"
+                      name="no_order" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[user_id]"
+                      dataType="wstr"
+                      length="50"
+                      name="user_id" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[source_code]"
+                      dataType="wstr"
+                      length="10"
+                      name="source_code" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[responsibility_center]"
+                      dataType="wstr"
+                      length="10"
+                      name="responsibility_center" />
+                    <externalMetadataColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input].ExternalColumns[no_pbd]"
+                      dataType="wstr"
+                      length="20"
+                      name="no_pbd" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Copy Data\tbl_purch_receive_hdr.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\tbl_purch_receive_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Copy Data\tbl_purch_receive_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Copy Data\tbl_purch_receive_hdr.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Copy Data.Paths[OLE DB Source Output]"
+              endId="Package\Copy Data\tbl_purch_receive_hdr.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Data\dts_purchasereceiptheader.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Copy Data.Paths[OLE DB Source Output1]"
+              endId="Package\Copy Data\tbl_penerimaan_barang_header.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Copy Data\dts_penerimaan_barang_hdr.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate tabel"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FB606A2A-7A6E-4916-9A1A-5B0ADEB95FCF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate tabel"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1F63C685-834B-4F3D-98AB-A0D618141CE3}"
+          SQLTask:SqlStatementSource="truncate table tbl_penerimaan_barang_header;&#xA;truncate table tbl_purch_receive_header;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DB053FE1-57A6-43D6-9DF9-791B6D16E9F7}"
+      DTS:From="Package\Truncate tabel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="128,42"
+          Id="Package\Copy Data"
+          TopLeft="88,167" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Truncate tabel"
+          TopLeft="80,71" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="152.75,113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Copy Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Copy Data\dts_purchasereceiptheader"
+          TopLeft="67,71" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Copy Data\tbl_penerimaan_barang_header"
+          TopLeft="357.5,196.5" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Copy Data\dts_penerimaan_barang_hdr"
+          TopLeft="359,72" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Copy Data\tbl_purch_receive_hdr"
+          TopLeft="71.5,193.5" />
+        <EdgeLayout
+          Id="Package\Copy Data.Paths[OLE DB Source Output1]"
+          TopLeft="469.25,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.5"
+              Start="0,0"
+              End="0,75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Copy Data.Paths[OLE DB Source Output]"
+          TopLeft="166.75,113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.5"
+              Start="0,0"
+              End="0,73">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Data\dts_purchasereceiptheader">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Data\tbl_penerimaan_barang_header">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Data\dts_penerimaan_barang_hdr">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Copy Data\tbl_purch_receive_hdr">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>Dashboard SLA Kontainer</Name>
+    <LastWriteTime>2023-05-30T03:31:14.1438645Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+    <Salt>JAqbP2o5</Salt>
+    <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAckmcHZyBH02uuoeZA3dUVAAAAAACAAAAAAADZgAAwAAAABAAAACdd+qtrUL8rrBx1m1ahwgxAAAAAASAAACgAAAAEAAAAFGsl0G54hFBzZl1d2rZYLgoAAAA8otE9eaG3Jpze8eyIfHKRJvvjDIYkR12Mcr6cG+4a8KkWupvRXO8eBQAAABv03mp3x/12myU17PpaGe6dGHtMQ==</LastKnownProtectedHashedPassword>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>Refrresh Table.dtsx</Name>
+      <LastWriteTime>2023-02-24T09:19:50.7411405Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>OKSu5jB3</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAckmcHZyBH02uuoeZA3dUVAAAAAACAAAAAAADZgAAwAAAABAAAAAgx2pvbbFNxQXGaw4XEM01AAAAAASAAACgAAAAEAAAAOxEn0hj51FxhWXf5SZHV9AoAAAA0PnbAno27GwPK9s6nZWMqAgNcLufAvAw3Oc6NFTfBz+1VC3o7pWfzxQAAACpkpHoqJIPRugWYCoxBHNv8imCRg==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Refresh Table Penerimaan.dtsx</Name>
+      <LastWriteTime>2023-05-30T07:11:03.8778523Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>pKvlNBMh</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAckmcHZyBH02uuoeZA3dUVAAAAAACAAAAAAADZgAAwAAAABAAAACJr7z2QA3tHncmo/hPwptaAAAAAASAAACgAAAAEAAAAKI0OdirfzdpgHZvM7nXFLYoAAAAyuZmUul4tGy+viCl+PKCHHa+hkYPNed9E0UOx6h+YTs5mV3cumbqpxQAAAByunvX8Rrhj2S8rjz0li2Zwe3wJw==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Refresh Data Booking Warehouse.dtsx</Name>
+      <LastWriteTime>2023-05-30T03:31:14.1180601Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithPassword</LastKnownProtectionLevel>
+      <Salt>44MLGtUo</Salt>
+      <LastKnownProtectedHashedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAckmcHZyBH02uuoeZA3dUVAAAAAACAAAAAAADZgAAwAAAABAAAAB8jWznj8VTjATLlEOZusPDAAAAAASAAACgAAAAEAAAADPM0XVIGO2/+3tQ/M65EvkoAAAA/gcN+c0f1hLJLdqGdinZJklCn7qbZMLlVENH5M21lYT2P7VC0sDyfhQAAAAenV9g6evRYrbpfYuBKr3MBxK1kA==</LastKnownProtectedHashedPassword>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>
